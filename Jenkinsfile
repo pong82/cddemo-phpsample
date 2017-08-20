@@ -1,10 +1,13 @@
  node("docker-test") {
 
-     stage("Unit Test"){
-
-     }
-     stage("Deploy"){
+     stage("Checkout"){
         checkout scm
+     }
+     stage("Build"){
+         docker.withRegistry('https://hub.docker.com/', 'docker-login') {
+            docker.build('pong645/php-sample').push('latest')
+            }
+        /*
         sh "docker build -t php-sample ."
         sh '''
             SERVICES=$(docker service ls --filter name=app1 --quiet | wc -l)
@@ -13,6 +16,6 @@
             else
                 docker service update --image php-sample app1
             fi
-        '''
+        '''*/
      }
  }
