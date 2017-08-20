@@ -4,10 +4,10 @@
         checkout scm
      }
      stage("Build"){
-         docker.withRegistry('', 'docker-login') {
+         docker.withRegistry('https://registry-1.docker.io/v2/', 'docker-login') {
             docker.build('pong645/php-sample').push('latest')
             }
-            
+
         /*
         sh "docker build -t php-sample ."
         sh '''
