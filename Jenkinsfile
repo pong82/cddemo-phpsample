@@ -10,15 +10,15 @@
          docker.withRegistry('', 'docker-login') {
             docker.build('pong645/php-sample').push(env.BUILD_NUMBER)
             }
-        /*
-        sh "docker build -t php-sample ."
+     }
+     stage("Deploy"){
         sh '''
             SERVICES=$(docker service ls --filter name=app1 --quiet | wc -l)
             if [[ "$SERVICES" -eq 0 ]]; then
-                docker service create --name app1 -p81:80 php-sample
+                docker service create --name app1 -p81:80 pong645/php-sample
             else
-                docker service update --image php-sample app1
+                docker service update --image pong645/php-sample app1
             fi
-        '''*/
+        '''
      }
  }
