@@ -11,7 +11,7 @@
             if [[ "$SERVICES" -eq 0 ]]; then
                 docker service create --name app1 -p81:80 php-sample
             else
-                docker service update --image php-sample app1
+                docker service update --image php-sample app1 -p81:80
             fi
         '''
      }
