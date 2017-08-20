@@ -8,7 +8,7 @@
             docker.build('pong645/php-sample').push('latest')
             }
          docker.withRegistry('', 'docker-login') {
-            docker.build('pong645/php-sample').push('${env.BUILD_TAG}')
+            docker.build('pong645/php-sample').push(env.BUILD_TAG)
             }
         /*
         sh "docker build -t php-sample ."
