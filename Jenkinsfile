@@ -14,7 +14,7 @@
      stage("Deploy"){
         sh '''
             ENV=$(curl -s http://cdtest.aimail.me/app1/env.html|grep "green"|wc -l)
-            if [[ "$SERVICES" -eq 0 ]]; then
+            if [[ "$ENV" -eq 0 ]]; then
                 SERVICES=$(docker service ls --filter name=app1green --quiet | wc -l)
                 if [[ "$SERVICES" -eq 0 ]]; then
                     docker service create --name app1green -p81:80 pong645/php-sample
