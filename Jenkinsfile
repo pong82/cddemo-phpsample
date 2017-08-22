@@ -22,12 +22,16 @@
                     CONTAINER=$(docker ps | grep app1green | cut -c 1-12)
                     echo "green">env.html
                     docker cp env.html "$CONTAINER":/var/www/html/
+                    docker service ps app1green>status.html
+                    docker cp status.html "$CONTAINER":/var/www/html/
                 else
                     docker service update --image pong645/php-sample:26 app1green
                     sleep 2
                     CONTAINER=$(docker ps | grep app1green | cut -c 1-12)
                     echo "green">env.html
                     docker cp env.html "$CONTAINER":/var/www/html/
+                    docker service ps app1green>status.html
+                    docker cp status.html "$CONTAINER":/var/www/html/
                 fi
             else
                 SERVICES=$(docker service ls --filter name=app1blue --quiet | wc -l)
@@ -37,12 +41,16 @@
                     CONTAINER=$(docker ps | grep app1blue | cut -c 1-12)
                     echo "blue">env.html
                     docker cp env.html "$CONTAINER":/var/www/html/
+                    docker service ps app1green>status.html
+                    docker cp status.html "$CONTAINER":/var/www/html/
                 else
                     docker service update --image pong645/php-sample app1blue
                     sleep 2
                     CONTAINER=$(docker ps | grep app1blue | cut -c 1-12)
                     echo "blue">env.html
                     docker cp env.html "$CONTAINER":/var/www/html/
+                    docker service ps app1green>status.html
+                    docker cp status.html "$CONTAINER":/var/www/html/
                 fi
             fi
         '''
