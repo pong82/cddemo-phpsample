@@ -17,13 +17,13 @@
             if [[ "$ENV" -eq 0 ]]; then
                 SERVICES=$(docker service ls --filter name=app1green --quiet | wc -l)
                 if [[ "$SERVICES" -eq 0 ]]; then
-                    docker service create --name app1green -p81:80 pong645/php-sample
+                    docker service create --name app1green -p81:80 pong645/php-sample:26
                     sleep 2
                     CONTAINER=$(docker ps | grep app1green | cut -c 1-12)
                     echo "green">env.html
                     docker cp env.html "$CONTAINER":/var/www/html/
                 else
-                    docker service update --image pong645/php-sample app1green
+                    docker service update --image pong645/php-sample:26 app1green
                     sleep 2
                     CONTAINER=$(docker ps | grep app1green | cut -c 1-12)
                     echo "green">env.html
