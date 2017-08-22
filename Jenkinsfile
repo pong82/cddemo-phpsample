@@ -41,7 +41,7 @@
                     CONTAINER=$(docker ps | grep app1blue | cut -c 1-12)
                     echo "blue">env.html
                     docker cp env.html "$CONTAINER":/var/www/html/
-                    docker service ps app1green>status.html
+                    docker service ps app1blue>status.html
                     docker cp status.html "$CONTAINER":/var/www/html/
                 else
                     docker service update --image pong645/php-sample app1blue
@@ -49,7 +49,7 @@
                     CONTAINER=$(docker ps | grep app1blue | cut -c 1-12)
                     echo "blue">env.html
                     docker cp env.html "$CONTAINER":/var/www/html/
-                    docker service ps app1green>status.html
+                    docker service ps app1blue>status.html
                     docker cp status.html "$CONTAINER":/var/www/html/
                 fi
             fi
